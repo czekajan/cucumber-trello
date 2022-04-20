@@ -2,6 +2,7 @@ package pl.akademiaqa.api.trello.board;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import lombok.RequiredArgsConstructor;
 import pl.akademiaqa.handlers.trello.TrelloAuthentication;
 
 import java.util.HashMap;
@@ -9,9 +10,10 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
+@RequiredArgsConstructor
 public class CreateBoardRequest {
 
-    TrelloAuthentication trelloAuthentication = new TrelloAuthentication();
+    private final TrelloAuthentication trelloAuthentication;
 
     public Response createBoard() {
 
@@ -26,7 +28,7 @@ public class CreateBoardRequest {
                 .when()
                 .post("https://api.trello.com/1/boards/")
                 .then()
-                .log().ifError()
+                .log().all()
                 .extract()
                 .response();
     }

@@ -3,11 +3,13 @@ package pl.akademiaqa.cucumber.steps.board;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import lombok.RequiredArgsConstructor;
 import pl.akademiaqa.api.trello.board.CreateBoardRequest;
 
+@RequiredArgsConstructor
 public class CreateBoardSteps {
 
-    CreateBoardRequest createBoardRequest = new CreateBoardRequest();
+    private final CreateBoardRequest createBoardRequest;
 
     @When("I create new board")
     public void i_create_new_board() {
