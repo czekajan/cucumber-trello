@@ -16,7 +16,16 @@ public class BaseRequest {
                 .setContentType(ContentType.JSON)
                 .addQueryParams(queryParams)
                 .build();
+    }
 
+    public RequestSpecification requestSetup(Map<String, ?> queryParams, Map<String, ?> pathParams){
+
+        return new RequestSpecBuilder()
+                .setBaseUri(TrelloUrl.BASE_URL)
+                .setContentType(ContentType.JSON)
+                .addQueryParams(queryParams)
+                .addPathParams(pathParams)
+                .build();
     }
 
 }
