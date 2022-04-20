@@ -18,7 +18,7 @@ public class CreateBoardRequest {
                 .when()
                 .post(requestHandler.getEndpoint())
                 .then()
-                .log().all()
+                .log().ifError()
                 .extract()
                 .response();
     }
