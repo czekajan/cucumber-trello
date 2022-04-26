@@ -28,4 +28,11 @@ public class ReadBoardSteps {
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
         Assertions.assertThat(response.getBody().jsonPath().getString("name")).isEqualTo(CommonValues.BOARD_NAME);
     }
+
+    @Then("I should not see this board any more")
+    public void i_should_not_see_this_board_any_more() {
+
+    }
+
+
 }

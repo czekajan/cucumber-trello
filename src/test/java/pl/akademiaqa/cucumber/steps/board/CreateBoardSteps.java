@@ -1,5 +1,6 @@
 package pl.akademiaqa.cucumber.steps.board;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
@@ -25,5 +26,10 @@ public class CreateBoardSteps {
 
         responseHandler.setResponse(createBoardRequest.createBoard(requestHandler));
         Assertions.assertThat(responseHandler.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
+    }
+
+    @Given("The board already exist")
+    public void the_board_already_exist() {
+
     }
 }
