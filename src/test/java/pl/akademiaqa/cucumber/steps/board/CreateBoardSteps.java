@@ -22,22 +22,29 @@ public class CreateBoardSteps {
 
     @When("I create new board")
     public void i_create_new_board() {
-        createNewBoard();
+        createNewBoard(CommonValues.BOARD_NAME);
     }
 
     @Given("The board already exist")
     public void the_board_already_exist() {
-        createNewBoard();
+        createNewBoard(CommonValues.BOARD_NAME);
     }
 
-    private void createNewBoard() {
+    @When("I create new board {string}")
+    public void i_create_new_board(String boardName) {
+        createNewBoard(boardName);
+    }
+
+    private void createNewBoard(String boardName) {
         requestHandler.setEndpoint(TrelloUrl.BOARDS);
-        requestHandler.addQueryParam("name", CommonValues.BOARD_NAME);
+        requestHandler.addQueryParam("name", boardName);
 
         responseHandler.setResponse(createBoardRequest.createBoard(requestHandler));
         Assertions.assertThat(responseHandler.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
 
         context.addBoard(CommonValues.BOARD_NAME, responseHandler.getId());
     }
+
+
 
 }
