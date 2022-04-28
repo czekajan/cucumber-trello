@@ -24,3 +24,9 @@ Feature: Create new board
       | &         |
       | *         |
       | (         |
+
+
+    Scenario: I should not be able to create new board with empty board name
+      Given I am authenticated to Trello
+      When I try to create board with empty board name
+      Then I should see an error

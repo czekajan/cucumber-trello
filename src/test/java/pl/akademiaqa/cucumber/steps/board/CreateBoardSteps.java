@@ -35,6 +35,15 @@ public class CreateBoardSteps {
         createNewBoard(boardName);
     }
 
+    @When("I try to create board with empty board name")
+    public void i_try_to_create_board_with_empty_board_name() {
+        requestHandler.setEndpoint(TrelloUrl.BOARDS);
+        requestHandler.addQueryParam("name", "");
+
+        responseHandler.setResponse(createBoardRequest.createBoard(requestHandler));
+    }
+
+
     private void createNewBoard(String boardName) {
         requestHandler.setEndpoint(TrelloUrl.BOARDS);
         requestHandler.addQueryParam("name", boardName);

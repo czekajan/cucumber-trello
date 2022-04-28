@@ -8,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import pl.akademiaqa.api.trello.board.ReadBoardRequest;
 import pl.akademiaqa.common.CommonValues;
 import pl.akademiaqa.handlers.api.RequestHandler;
+import pl.akademiaqa.handlers.api.ResponseHandler;
 import pl.akademiaqa.handlers.shared.Context;
 import pl.akademiaqa.url.TrelloUrl;
 
@@ -17,6 +18,7 @@ public class ReadBoardSteps {
     private final ReadBoardRequest readBoardRequest;
     private final RequestHandler requestHandler;
     private final Context context;
+    private final ResponseHandler responseHandler;
 
     @Then("I can read created board details")
     public void i_can_read_created_board_details() {
@@ -41,7 +43,14 @@ public class ReadBoardSteps {
 
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
         Assertions.assertThat(response.getBody().jsonPath().getString("name")).isEqualTo(boardName);
+
     }
+
+    @Then("I should see an error")
+    public void i_should_see_an_error() {
+        Assertions.assertThat(responseHandler.getStatusCode()).toString().startsWith("4");
+    }
+
 
     private Response readBoard(String boardName) {
         String boardId = context.getBoards().get(boardName);
@@ -52,6 +61,5 @@ public class ReadBoardSteps {
         Response response = readBoardRequest.readBoard(requestHandler);
         return response;
     }
-
 
 }
