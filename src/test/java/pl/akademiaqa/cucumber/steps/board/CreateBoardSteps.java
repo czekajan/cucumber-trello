@@ -43,6 +43,14 @@ public class CreateBoardSteps {
         responseHandler.setResponse(createBoardRequest.createBoard(requestHandler));
     }
 
+    @When("I try to create new board when I an not authenticated")
+    public void i_try_to_create_new_board_when_i_an_not_authenticated() {
+        requestHandler.setEndpoint(TrelloUrl.BOARDS);
+        requestHandler.addQueryParam("name", CommonValues.BOARD_NAME);
+
+        responseHandler.setResponse(createBoardRequest.createBoard(requestHandler));
+    }
+
 
     private void createNewBoard(String boardName) {
         requestHandler.setEndpoint(TrelloUrl.BOARDS);
