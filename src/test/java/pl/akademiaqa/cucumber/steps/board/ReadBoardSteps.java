@@ -35,8 +35,8 @@ public class ReadBoardSteps {
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SC_NOT_FOUND);
     }
 
-    @Then("I can create board details with board name {string}")
-    public void i_can_create_board_details_with_board_name(String boardName) {
+    @Then("I can read board details with board name {string}")
+    public void i_can_read_board_details_with_board_name(String boardName) {
         Response response = readBoard(boardName);
 
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SC_OK);

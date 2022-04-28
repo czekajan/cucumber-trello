@@ -42,7 +42,7 @@ public class CreateBoardSteps {
         responseHandler.setResponse(createBoardRequest.createBoard(requestHandler));
         Assertions.assertThat(responseHandler.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
 
-        context.addBoard(CommonValues.BOARD_NAME, responseHandler.getId());
+        context.addBoard(boardName, responseHandler.getId());
     }
 
 
