@@ -51,6 +51,12 @@ public class ReadBoardSteps {
         Assertions.assertThat(responseHandler.getStatusCode()).toString().startsWith("4");
     }
 
+    @Then("I see new board name {string}")
+    public void i_see_new_board_name(String boardName) {
+        Response response = readBoard(CommonValues.BOARD_NAME);
+        Assertions.assertThat(response.getBody().jsonPath().getString("name")).isEqualTo(boardName);
+    }
+
 
     private Response readBoard(String boardName) {
         String boardId = context.getBoards().get(boardName);
