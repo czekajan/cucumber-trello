@@ -1,4 +1,4 @@
-package pl.akademiaqa.api.trello.board;
+package pl.akademiaqa.api.trello;
 
 import io.restassured.response.Response;
 import lombok.RequiredArgsConstructor;
@@ -7,11 +7,11 @@ import pl.akademiaqa.handlers.api.RequestHandler;
 import static io.restassured.RestAssured.given;
 
 @RequiredArgsConstructor
-public class CreateBoardRequest {
+public class CreateRequest {
 
     private final BaseRequest baseRequest;
 
-    public Response createBoard(RequestHandler requestHandler) {
+    public Response create(RequestHandler requestHandler) {
 
         return given()
                 .spec(baseRequest.requestSetup(requestHandler.getQueryParams()))

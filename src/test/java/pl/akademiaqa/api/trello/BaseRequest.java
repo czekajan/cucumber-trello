@@ -1,4 +1,4 @@
-package pl.akademiaqa.api.trello.board;
+package pl.akademiaqa.api.trello;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
