@@ -1,6 +1,6 @@
 Feature: Move card between lists
 
-  @authenticated @cleanup
+  @authenticated @cleanup @e2e
   Scenario: I am able to move card between lists
     Given I am authenticated to Trello
     And I create new board "MY BOARD"
