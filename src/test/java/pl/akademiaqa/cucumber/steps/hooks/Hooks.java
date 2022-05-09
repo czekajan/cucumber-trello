@@ -1,6 +1,7 @@
 package pl.akademiaqa.cucumber.steps.hooks;
 
 import io.cucumber.java.After;
+import io.cucumber.java.BeforeStep;
 import io.restassured.response.Response;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpStatus;
@@ -29,27 +30,26 @@ public class Hooks {
                     Response response = deleteBoardRequest.delete(requestHandler);
                     Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SC_OK);
                 });
-
     }
 
-//    @BeforeStep(value = "@authenticated")
-//    public void clearRequest(){
-//        requestHandler.getQueryParams().clear();
-//        requestHandler.getPathParams().clear();
-//        requestHandler.setEndpoint(null);
-//        setAuthDetails();
-//    }
-//
-//    @BeforeStep(value = "@not_authenticated")
-//    public void clearRequest(){
-//        requestHandler.getQueryParams().clear();
-//        requestHandler.getPathParams().clear();
-//        requestHandler.setEndpoint(null);
-//    }
-//
-//    private void setAuthDetails(){
-//        requestHandler.getQueryParams().put("key", trelloAuthentication.getKey());
-//        requestHandler.getQueryParams().put("token", trelloAuthentication.getToken());
-//    }
+    @BeforeStep(value = "@authenticated")
+    public void clearRequest() {
+        requestHandler.getQueryParams().clear();
+        requestHandler.getPathParams().clear();
+        requestHandler.setEndpoint(null);
+        setAuthDetails();
+    }
+
+    @BeforeStep(value = "@not_authenticated")
+    public void clearAuth(){
+        requestHandler.getQueryParams().clear();
+        requestHandler.getPathParams().clear();
+        requestHandler.setEndpoint(null);
+    }
+
+    private void setAuthDetails(){
+        requestHandler.getQueryParams().put("key", trelloAuthentication.getKey());
+        requestHandler.getQueryParams().put("token", trelloAuthentication.getToken());
+    }
 
 }
